@@ -1,13 +1,78 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Swap - Home</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>Document</title>
 </head>
 <body>
-    
+
+    <!-- Header -->
+    <header>
+        <h1>Skill Swap</h1>
+
+        <nav aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#skills">Explore Skills</a>
+            <a href="#profile">My Profile</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="home">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Welcome to Skill Swap!</h2>
+            <p>
+                Learn new skills and share your knowledge
+                with other college students.
+            </p>
+            <button id="welcomeBtn">Get Started</button>
+            <p id="message"></p>
+        </section>
+
+        <!-- Skill Offerings -->
+        <section id="skills">
+            <h2>Explore Skills</h2>
+            <p>Discover skills offered by other students.</p>
+
+            <div class="skills-container">
+
+                <article class="skill-card">
+                    <h3>Programming</h3>
+                    <p>Learn Python, JavaScript, and HTML.</p>
+                </article>
+
+                <article class="skill-card">
+                    <h3>Languages</h3>
+                    <p>Practice English, Spanish, and more.</p>
+                </article>
+
+                <article class="skill-card">
+                    <h3>Mathematics</h3>
+                    <p>Get help with math and problem solving.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Profile Placeholder -->
+        <section id="profile">
+            <h2>My Profile</h2>
+            <p>Student profiles will be available soon.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Skill Swap. All rights reserved.</p>
+        <p>Created for college students and recent graduates.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
