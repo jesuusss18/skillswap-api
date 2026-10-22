@@ -20,12 +20,7 @@ describe('filterSkillsByCategory', () => {
         expect(result).toEqual(skills);
     });
     test('returns an empty array when no matches',() => {
-        const result = filterSkillsByCategory(skills, 'ALL');
+        const result = filterSkillsByCategory(skills,"Science");
         expect(result).toEqual([]);
     });
-
-    });
-
-
-
 });
