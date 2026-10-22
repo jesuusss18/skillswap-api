@@ -1,0 +1,24 @@
+{
+  "name": "skillswap-jesusunit8",
+  "version": "1.0.0",
+  "description": "Skill Swap is a web application designed for college students\r and recent graduates who want to share and learn new skills.",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesuusss18/skillswap-jesusunit8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jesuusss18/skillswap-jesusunit8/issues"
+  },
+  "homepage": "https://github.com/jesuusss18/skillswap-jesusunit8#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
