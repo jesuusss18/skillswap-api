@@ -2,6 +2,8 @@ const button = document.getElementById("welcomeBtn");
 const message = document.getElementById("message");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const skillCards = document.querySelectorAll(".skill-card");
+const calculateBtn = document.getElementById("calculateBtn");
+const totalResult = document.getElementById("totalResult");
 
 button.addEventListener("click", function() {
     message.textContent = "Welcome! Let's start sharing skills!";
@@ -59,4 +61,27 @@ filterButtons.forEach(function(button) {
 
         button.classList.add("active");
     });
+});
+
+calculateBtn.addEventListener("click", function() {
+    const rateInput = document.getElementById("rate").value;
+    const hoursInput = document.getElementById("hours").value;
+
+    if (rateInput === "" || hoursInput === "") {
+        totalResult.textContent = "Please enter rate and hours.";
+        return;
+    }
+
+    const rate = Number(rateInput);
+    const hours = Number(hoursInput);
+
+    if (!Number.isFinite(rate) || !Number.isFinite(hours)
+        || rate < 0 || hours < 0) {
+        totalResult.textContent = "Please enter valid positive numbers.";
+        return;
+    }
+
+    const total = calculateTotalCosts(rate, hours);
+
+    totalResult.textContent = "Total Cost: $" + total.toFixed(2);
 });

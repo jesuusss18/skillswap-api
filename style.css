@@ -120,6 +120,51 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+/* Session Cost Calculator */
+#calculator {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #e8f0fa;
+}
+
+.calculator-container {
+    background-color: white;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px #ccc;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.calculator-container label {
+    text-align: left;
+    font-weight: bold;
+}
+
+.calculator-container input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#calculateBtn {
+    background-color: #234c87;
+    color: white;
+    margin-top: 10px;
+}
+
+#totalResult {
+    font-weight: bold;
+    font-size: 18px;
+    color: #234c87;
+}
+
 /* Mobile Screens */
 @media (max-width: 600px) {
     .skills-container {
