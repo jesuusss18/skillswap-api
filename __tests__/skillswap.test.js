@@ -1,13 +1,14 @@
-const {filterSkillsByCategory,calculateTotalCosts} = require('../skillswap-functions.js');
+const {filterSkillsByCategory,calculateTotalCosts, matchSkillsToUser} = require('../skillswap-functions.js');
 
-describe('filterSkillsByCategory', () => {
-    const skills = [
-        { title: 'Python Tutoring', category: 'Programming', price: 20 },
-        { title: 'Guitar Lessons', category: 'Music', price: 15 },
-        { title: 'Resume Review', category: 'Career', price: 0 },
-        { title: 'Web Development', category: 'Programming', price: 25 }
-        ];
     
+const skills = [
+    { title: 'Python Tutoring', category: 'Programming', price: 20 },
+    { title: 'Guitar Lessons', category: 'Music', price: 15 },
+    { title: 'Resume Review', category: 'Career', price: 0 },
+    { title: 'Web Development', category: 'Programming', price: 25 }
+];
+
+describe('filterSkillsByCategory', () => {    
     test('filters skills by category',() => {
         const result = filterSkillsByCategory(skills, 'Programming');
         expect(result).toEqual([
@@ -44,6 +45,42 @@ describe('calculateTotalCosts', () => {
         expect(result).toBe(0);
     });
 });
- 
 
+describe('matchSkillsToUser', () => {
+    test('match by category and price',() => {
+        const userNeeds = {
+            category : "Programming",
+            maxPrice : 30
+        }
 
+        const result = matchSkillsToUser(userNeeds, skills)
+        expect(result).toEqual([{ title: 'Python Tutoring', category: 'Programming', price: 20 }, { title: 'Web Development', category: 'Programming', price: 25 }])
+    });
+    test('filters by max price',() => {
+        const userNeeds = {
+            category : "Programming",
+            maxPrice : 20
+        }
+
+        const result = matchSkillsToUser(userNeeds, skills)
+        expect(result).toEqual([{ title: 'Python Tutoring', category: 'Programming', price: 20 }])
+    });
+    test('returns empty array for no matches',() => {
+        const userNeeds = {
+            category : "Science",
+            maxPrice : 20
+        }
+
+        const result = matchSkillsToUser(userNeeds, skills)
+        expect(result).toEqual([])
+    });
+    test('include free skills',() => {
+        const userNeeds = {
+            category : "Career",
+            maxPrice : 0
+        }
+
+        const result = matchSkillsToUser(userNeeds, skills)
+        expect(result).toEqual([{ title: 'Resume Review', category: 'Career', price: 0 }])
+    });
+});
