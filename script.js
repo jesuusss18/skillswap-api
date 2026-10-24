@@ -85,3 +85,63 @@ calculateBtn.addEventListener("click", function() {
 
     totalResult.textContent = "Total Cost: $" + total.toFixed(2);
 });
+
+// Find My Match
+const matchBtn = document.getElementById("matchBtn");
+const matchResults = document.getElementById("matchResults");
+
+const availableSkills = [
+    { title: "Python Tutoring", category: "Programming", price: 20 },
+    { title: "Web Development", category: "Programming", price: 25 },
+    { title: "Guitar Lessons", category: "Music", price: 15 },
+    { title: "Resume Review", category: "Career", price: 0 }
+];
+
+matchBtn.addEventListener("click", function() {
+
+    const category = document.getElementById("matchCategory").value;
+    const priceInput = document.getElementById("maxPrice").value;
+
+    if (priceInput === "") {
+        matchResults.textContent = "Please enter your maximum budget.";
+        return;
+    }
+
+    const maxPrice = Number(priceInput);
+
+    if (!Number.isFinite(maxPrice) || maxPrice < 0) {
+        matchResults.textContent = "Please enter a valid budget.";
+        return;
+    }
+
+    const userNeeds = {
+        category: category,
+        maxPrice: maxPrice
+    };
+
+    // Call the function tested with Jest
+    const matches = matchSkillsToUser(userNeeds, availableSkills);
+
+    matchResults.innerHTML = "";
+
+    if (matches.length === 0) {
+        matchResults.textContent = "No matching skills found.";
+        return;
+    }
+
+    matches.forEach(function(skill) {
+        const card = document.createElement("div");
+        card.className = "match-card";
+
+        const title = document.createElement("h3");
+        title.textContent = skill.title;
+
+        const price = document.createElement("p");
+        price.textContent = "Price: $" + skill.price + "/hour";
+
+        card.appendChild(title);
+        card.appendChild(price);
+
+        matchResults.appendChild(card);
+    });
+});
