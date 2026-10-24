@@ -35,9 +35,16 @@
             <h2>Browse Skills</h2>
             <p>Find students who can help you learn something new.</p>
 
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="ALL">All</button>
+                <button class="filter-btn" data-category="Programming">Programming</button>
+                <button class="filter-btn" data-category="Mathematics">Mathematics</button>
+                <button class="filter-btn" data-category="Languages">Spanish</button>
+            </div>
+
             <div class="skills-container">
 
-                <article class="skill-card">
+                <article class="skill-card" data-category="Programming">
                     <h3>Python Programming</h3>
                     <p>Learn Python basics and coding.</p>
                     <p><strong>Provider:</strong> Carlos</p>
@@ -47,7 +54,7 @@
                     </button>
                 </article>
 
-                <article class="skill-card">
+                <article class="skill-card" data-category="Languages">
                     <h3>Spanish Lessons</h3>
                     <p>Practice Spanish speaking and grammar.</p>
                     <p><strong>Provider:</strong> Maria</p>
@@ -57,7 +64,7 @@
                     </button>
                 </article>
 
-                <article class="skill-card">
+                <article class="skill-card" data-category="Mathematics">
                     <h3>Math Tutoring</h3>
                     <p>Get help with algebra and mathematics.</p>
                     <p><strong>Provider:</strong> David</p>
@@ -67,7 +74,7 @@
                     </button>
                 </article>
 
-                <article class="skill-card">
+                <article class="skill-card" data-category="Programming">
                     <h3>Web Development</h3>
                     <p>Learn HTML, CSS, and JavaScript.</p>
                     <p><strong>Provider:</strong> Sofia</p>
@@ -102,6 +109,7 @@
         <p>&copy; 2026 Skill Swap. All rights reserved.</p>
     </footer>
 
+    <script src="skillswap-functions.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
