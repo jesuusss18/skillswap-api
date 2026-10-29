@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Swap - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -42,49 +42,7 @@
                 <button class="filter-btn" data-category="Languages">Spanish</button>
             </div>
 
-            <div class="skills-container">
-
-                <article class="skill-card" data-category="Programming">
-                    <h3>Python Programming</h3>
-                    <p>Learn Python basics and coding.</p>
-                    <p><strong>Provider:</strong> Carlos</p>
-                    <p><strong>Price:</strong> $15/hour</p>
-                    <button class="details-btn" data-skill="python">
-                        View Details
-                    </button>
-                </article>
-
-                <article class="skill-card" data-category="Languages">
-                    <h3>Spanish Lessons</h3>
-                    <p>Practice Spanish speaking and grammar.</p>
-                    <p><strong>Provider:</strong> Maria</p>
-                    <p><strong>Price:</strong> $12/hour</p>
-                    <button class="details-btn" data-skill="spanish">
-                        View Details
-                    </button>
-                </article>
-
-                <article class="skill-card" data-category="Mathematics">
-                    <h3>Math Tutoring</h3>
-                    <p>Get help with algebra and mathematics.</p>
-                    <p><strong>Provider:</strong> David</p>
-                    <p><strong>Price:</strong> $18/hour</p>
-                    <button class="details-btn" data-skill="math">
-                        View Details
-                    </button>
-                </article>
-
-                <article class="skill-card" data-category="Programming">
-                    <h3>Web Development</h3>
-                    <p>Learn HTML, CSS, and JavaScript.</p>
-                    <p><strong>Provider:</strong> Sofia</p>
-                    <p><strong>Price:</strong> $20/hour</p>
-                    <button class="details-btn" data-skill="web">
-                        View Details
-                    </button>
-                </article>
-
-            </div>
+            <div class="skills-container"></div>
         </section>
 
         <!-- Cost Calculator -->
@@ -134,26 +92,42 @@
         </section>
 
         <!-- Offer Skills -->
+
         <section id="offer">
             <h2>Offer Your Skills</h2>
-            <p>Share what you know and help other students learn.</p>
+            <p>Share your knowledge with other students.</p>
+
+            <form id="skillForm">
+                <label for="skillTitle">Skill Title:</label>
+                <input type="text" id="skillTitle" required>
+
+                <label for="skillCategory">Category:</label>
+                <select id="skillCategory" required>
+                    <option value="Programming">Programming</option>
+                    <option value="Music">Music</option>
+                    <option value="Career">Career</option>
+                    <option value="Languages">Languages</option>
+                    <option value="Mathematics">Mathematics</option>
+                </select>
+
+                <label for="skillPrice">Price per Hour ($):</label>
+                <input type="number" id="skillPrice" min="0" step="0.01" required>
+
+                <label for="skillDescription">Description:</label>
+                <textarea id="skillDescription" required></textarea>
+
+                <button type="submit">Create Skill</button>
+                <p id="formMessage"></p>
+            </form>
         </section>
 
-        <!-- About -->
-        <section id="about">
-            <h2>About Skill Swap</h2>
-            <p>
-                Skill Swap connects college students and recent
-                graduates who want to teach and learn new skills.
-            </p>
-        </section>
-    </main>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Skill Swap. All rights reserved.</p>
     </footer>
 
+    <script src="api-service.js"></script>
     <script src="skillswap-functions.js"></script>
     <script src="script.js"></script>
 </body>
