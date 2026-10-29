@@ -17,8 +17,10 @@ function matchSkillsToUser(userNeeds, skills) {
     );
 }
 
-module.exports = {
-    filterSkillsByCategory,
-    calculateTotalCosts,
-    matchSkillsToUser
-};
+if (typeof module !== "undefined") {
+    module.exports = {
+        filterSkillsByCategory,
+        calculateTotalCosts,
+        matchSkillsToUser
+    };
+}

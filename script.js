@@ -1,7 +1,6 @@
 const button = document.getElementById("welcomeBtn");
 const message = document.getElementById("message");
 const filterButtons = document.querySelectorAll(".filter-btn");
-const skillCards = document.querySelectorAll(".skill-card");
 const calculateBtn = document.getElementById("calculateBtn");
 const totalResult = document.getElementById("totalResult");
 
@@ -9,52 +8,70 @@ button.addEventListener("click", function() {
     message.textContent = "Welcome! Let's start sharing skills!";
 });
 
-const skillDetails = {
-    python: "Carlos teaches Python basics, loops, and functions.",
-    spanish: "Maria offers Spanish lessons for beginners.",
-    math: "David helps students with algebra and math problems.",
-    web: "Sofia teaches HTML, CSS, and JavaScript."
-};
+async function loadSkills() {
+    try {
+        const data = await fetchSkills();
 
-// Get all View Details buttons
-const detailButtons = document.querySelectorAll(".details-btn");
+        availableSkills = data;
 
-// Add click events
-detailButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-        const skill = button.getAttribute("data-skill");
+        displaySkills(availableSkills);
 
-        alert(skillDetails[skill]);
+        return availableSkills;
+
+    } catch (error) {
+        console.error("Error loading skills:", error);
+        return [];
+    }
+}
+
+function displaySkills(skills) {
+    const container = document.querySelector(".skills-container");
+
+    container.innerHTML = "";
+
+    skills.forEach(function(skill) {
+        const card = document.createElement("div");
+        card.className = "skill-card";
+
+        const title = document.createElement("h3");
+        title.textContent = skill.title;
+
+        const category = document.createElement("p");
+        category.textContent = "Category: " + skill.category;
+
+        const price = document.createElement("p");
+        price.textContent = "Price: $" + skill.price + "/hour";
+
+        const detailsButton = document.createElement("button");
+        detailsButton.className = "details-btn";
+        detailsButton.textContent = "View Details";
+
+        detailsButton.addEventListener("click", function() {
+            alert(skill.description || "No description available.");
+        });
+
+        card.appendChild(title);
+        card.appendChild(category);
+        card.appendChild(price);
+        card.appendChild(detailsButton);
+
+        container.appendChild(card);
     });
-});
-// Get the categories from the HTML cards
-const skills = Array.from(skillCards).map(card => {
-    return {
-        category: card.dataset.category,
-        element: card
-    };
-});
+}
 
 // Add click events to filter buttons
+
 filterButtons.forEach(function(button) {
     button.addEventListener("click", function() {
 
         const category = button.dataset.category;
 
-        // Use our tested function
-        const filteredSkills = filterSkillsByCategory(skills, category);
+        const filteredSkills = filterSkillsByCategory(
+            availableSkills, category
+        );
 
-        // Hide all cards
-        skillCards.forEach(function(card) {
-            card.style.display = "none";
-        });
+        displaySkills(filteredSkills);
 
-        // Show matching cards
-        filteredSkills.forEach(function(skill) {
-            skill.element.style.display = "block";
-        });
-
-        // Highlight selected button
         filterButtons.forEach(function(btn) {
             btn.classList.remove("active");
         });
@@ -62,6 +79,7 @@ filterButtons.forEach(function(button) {
         button.classList.add("active");
     });
 });
+
 
 calculateBtn.addEventListener("click", function() {
     const rateInput = document.getElementById("rate").value;
@@ -90,12 +108,7 @@ calculateBtn.addEventListener("click", function() {
 const matchBtn = document.getElementById("matchBtn");
 const matchResults = document.getElementById("matchResults");
 
-const availableSkills = [
-    { title: "Python Tutoring", category: "Programming", price: 20 },
-    { title: "Web Development", category: "Programming", price: 25 },
-    { title: "Guitar Lessons", category: "Music", price: 15 },
-    { title: "Resume Review", category: "Career", price: 0 }
-];
+let availableSkills = [];
 
 matchBtn.addEventListener("click", function() {
 
@@ -145,3 +158,33 @@ matchBtn.addEventListener("click", function() {
         matchResults.appendChild(card);
     });
 });
+
+
+const skillForm = document.getElementById("skillForm");
+const formMessage = document.getElementById("formMessage");
+
+skillForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const skillData = {
+        title: document.getElementById("skillTitle").value,
+        category: document.getElementById("skillCategory").value,
+        price: Number(document.getElementById("skillPrice").value),
+        description: document.getElementById("skillDescription").value
+    };
+
+    try {
+        await createSkill(skillData);
+
+        formMessage.textContent = "Skill created successfully!";
+
+        skillForm.reset();
+
+        await loadSkills();
+
+    } catch (error) {
+        formMessage.textContent = "Error creating skill.";
+    }
+});
+
+loadSkills();
